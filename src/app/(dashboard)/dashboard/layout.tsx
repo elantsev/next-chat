@@ -3,7 +3,7 @@ import { Icons } from '@/components/Icons';
 // import MobileChatLayout from '@/components/MobileChatLayout';
 // import SidebarChatList from '@/components/SidebarChatList';
 import SignOutButton from '@/components/SignOutButton';
-// import { getFriendsByUserId } from '@/helpers/get-friends-by-user-id';
+import { getFriendsByUserId } from '@/helpers/get-friends-by-user-id';
 import { fetchRedis } from '@/helpers/redis';
 import { authOptions } from '@/lib/auth';
 import { SidebarOption } from '@/types/typings';
@@ -35,8 +35,8 @@ const Layout = async ({ children }: LayoutProps) => {
   const session = await getServerSession(authOptions);
   if (!session) notFound();
 
-  // const friends = await getFriendsByUserId(session.user.id);
-  // console.log('friends', friends);
+  const friends = await getFriendsByUserId(session.user.id);
+  console.log('friends', friends);
 
   const unseenRequestCount = (
     (await fetchRedis(
