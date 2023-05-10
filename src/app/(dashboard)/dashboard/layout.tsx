@@ -1,7 +1,7 @@
 import FriendRequestSidebarOptions from '@/components/FriendRequestSidebarOptions';
 import { Icons } from '@/components/Icons';
-// import MobileChatLayout from '@/components/MobileChatLayout';
-// import SidebarChatList from '@/components/SidebarChatList';
+import MobileChatLayout from '@/components/MobileChatLayout';
+import SidebarChatList from '@/components/SidebarChatList';
 import SignOutButton from '@/components/SignOutButton';
 import { getFriendsByUserId } from '@/helpers/get-friends-by-user-id';
 import { fetchRedis } from '@/helpers/redis';
@@ -47,30 +47,30 @@ const Layout = async ({ children }: LayoutProps) => {
 
   return (
     <div className="w-full flex h-screen">
-      {/* <div className="md:hidden">
+      <div className="md:hidden">
         <MobileChatLayout
           friends={friends}
           session={session}
           sidebarOptions={sidebarOptions}
           unseenRequestCount={unseenRequestCount}
         />
-      </div> */}
+      </div>
 
       <div className="hidden md:flex h-full w-full max-w-xs grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6">
         <Link href="/dashboard" className="flex h-16 shrink-0 items-center">
           <Icons.Logo className="h-8 w-auto text-indigo-600" />
         </Link>
 
-        {/* {friends.length > 0 ? ( */}
-        <div className="text-xs font-semibold leading-6 text-gray-400">
-          Your chats
-        </div>
-        {/* ) : null} */}
+        {friends.length > 0 ? (
+          <div className="text-xs font-semibold leading-6 text-gray-400">
+            Your chats
+          </div>
+        ) : null}
 
         <nav className="flex flex-1 flex-col">
           <ul role="list" className="flex flex-1 flex-col gap-y-7">
             <li>
-              {/* <SidebarChatList sessionId={session.user.id} friends={friends} /> */}
+              <SidebarChatList sessionId={session.user.id} friends={friends} />
             </li>
             <li>
               <div className="text-xs font-semibold leading-6 text-gray-400">
